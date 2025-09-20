@@ -2,8 +2,9 @@
 
 Executive Technology Leadership Placement System - A comprehensive MCP server for researching companies, analyzing job opportunities, and preparing for executive technology roles.
 
-[![npm version](https://badge.fury.io/js/@headhunter/mcp-server.svg)](https://badge.fury.io/js/@headhunter/mcp-server)
+[![npm version](https://badge.fury.io/js/@gnivildev/headhunter-mcp-server.svg)](https://badge.fury.io/js/@gnivildev/headhunter-mcp-server)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![GitHub](https://img.shields.io/badge/GitHub-stricher05%2Fheadhunter--mcp--server-blue)](https://github.com/stricher05/headhunter-mcp-server)
 
 ## Overview
 
@@ -22,18 +23,21 @@ HeadHunter MCP Server provides AI-powered tools for executive job hunting and ca
 
 ### NPM Package
 ```bash
-npm install -g @headhunter/mcp-server
+npm install -g @gnivildev/headhunter-mcp-server
 ```
 
 ### Claude Desktop Configuration
-Add to your Claude Desktop MCP configuration:
+Add to your Claude Desktop MCP configuration (`%APPDATA%\Claude\claude_desktop_config.json`):
 
 ```json
 {
   "mcpServers": {
     "headhunter": {
       "command": "npx",
-      "args": ["-y", "@headhunter/mcp-server"]
+      "args": ["-y", "@gnivildev/headhunter-mcp-server"],
+      "env": {
+        "NODE_ENV": "production"
+      }
     }
   }
 }
@@ -41,11 +45,20 @@ Add to your Claude Desktop MCP configuration:
 
 ### Development Setup
 ```bash
-git clone https://github.com/your-org/headhunter-mcp-server
+git clone https://github.com/stricher05/headhunter-mcp-server
 cd headhunter-mcp-server
 npm install
 npm run build
 npm run dev
+```
+
+### Testing the Installation
+```bash
+# Test global CLI installation
+headhunter-mcp --help
+
+# Test MCP server functionality
+echo '{"jsonrpc":"2.0","id":1,"method":"tools/list"}' | headhunter-mcp
 ```
 
 ## Available Tools
@@ -177,6 +190,19 @@ Create detailed 30-60-90 day plan for executive technology role.
 }
 ```
 
+## Real-World Example
+
+### McCain Foods Head of AI Analysis
+We tested the HeadHunter system with a real LinkedIn job posting for McCain Foods' Head of AI position. The analysis generated:
+
+- **Company Intelligence**: $10B+ revenue, global leader in frozen potato products, 60+ countries
+- **Revenue Engine Mapping**: $50-100M AI opportunity in supply chain optimization
+- **Strategic Positioning**: Ground-floor AI leadership role with significant business impact potential
+- **Interview Strategy**: Focus on traditional industry transformation and P&L impact
+- **30-60-90 Plan**: Supply chain quick wins → manufacturing AI → comprehensive transformation
+
+See the complete analysis in our [applications directory](./applications/2025-09-19-mccain-foods-head-of-ai/).
+
 ## Usage Examples
 
 ### Basic Company Research
@@ -269,14 +295,36 @@ npm install
 # Build TypeScript
 npm run build
 
-# Run in development mode
+# Run in development mode (for debugging)
 npm run dev
 
-# Run tests
-npm test
+# Test MCP server functionality
+npm run test
 
 # Lint code
 npm run lint
+
+# Clean build artifacts
+npm run clean
+```
+
+### Publishing Process
+```bash
+# Build the package
+npm run build
+
+# Test locally
+npm link
+npm link @gnivildev/headhunter-mcp-server
+
+# Publish to npm (requires 2FA)
+npm login
+npm publish --access public --otp=XXXXXX
+
+# Push to GitHub
+git add .
+git commit -m "feat: update package version"
+git push origin main
 ```
 
 ### Contributing
@@ -285,6 +333,13 @@ npm run lint
 3. Commit your changes (`git commit -m 'Add amazing feature'`)
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
+
+### Development Tools
+- **TypeScript**: Strongly typed development
+- **ESLint**: Code quality and consistency
+- **Jest**: Testing framework
+- **GitHub Actions**: CI/CD pipeline
+- **npm**: Package management and publishing
 
 ## Configuration
 
@@ -351,9 +406,9 @@ Create a `.headhunterrc.json` file in your project directory:
 - [Contributing Guidelines](./CONTRIBUTING.md)
 
 ### Community
-- [GitHub Issues](https://github.com/your-org/headhunter-mcp-server/issues)
-- [Discussions](https://github.com/your-org/headhunter-mcp-server/discussions)
-- [Discord Community](https://discord.gg/headhunter)
+- [GitHub Issues](https://github.com/stricher05/headhunter-mcp-server/issues)
+- [Discussions](https://github.com/stricher05/headhunter-mcp-server/discussions)
+- [npm Package](https://www.npmjs.com/package/@gnivildev/headhunter-mcp-server)
 
 ### Professional Services
 - Custom implementation and integration
@@ -376,4 +431,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 **HeadHunter MCP Server** - Empowering executive technology leadership through AI-powered career intelligence.
 
-For more information, visit [https://headhunter-mcp.com](https://headhunter-mcp.com) or contact [support@headhunter-mcp.com](mailto:support@headhunter-mcp.com).
+**Live Package**: [@gnivildev/headhunter-mcp-server](https://www.npmjs.com/package/@gnivildev/headhunter-mcp-server)
+**Source Code**: [GitHub Repository](https://github.com/stricher05/headhunter-mcp-server)
+**Author**: [stricher05](https://github.com/stricher05) ([gnivildev](https://www.npmjs.com/~gnivildev))
